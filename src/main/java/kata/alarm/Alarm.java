@@ -7,9 +7,11 @@ import kata.localtime.LocalTimeProvider;
 
 public class Alarm {
   private final ILocalTimeProvider localTimeProvider;
+  private final EmailService emailService;
   
   public Alarm() {
 	  localTimeProvider = new LocalTimeProvider();
+	  emailService = new EmailService();
   }
   
   public int checkForAlarm() {
@@ -19,7 +21,7 @@ public class Alarm {
     final int elapsed = getElapsedTimeInMinutes(currentTime);
 
     if (elapsed >= 500) {
-      new EmailService().sendWarningEmail(elapsed);
+      emailService.sendWarningEmail(elapsed);
     }
 
     return elapsed;
