@@ -16,7 +16,7 @@ public class Alarm {
 
     final LocalTime currentTime = localTimeProvider.getCurrentTime();
 
-    final int elapsed = (now.getHour() * 60 ) + now.getMinute();
+    final int elapsed = getElapsedTimeInMinutes(currentTime);
 
     if (elapsed >= 500) {
       new EmailService().sendWarningEmail(elapsed);
@@ -24,6 +24,10 @@ public class Alarm {
 
     return elapsed;
 
+  }
+  
+  private int getElapsedTimeInMinutes(LocalTime localTime) {
+	  return localTime.getHour() * 60 + localTime.getMinute();
   }
 
 }
