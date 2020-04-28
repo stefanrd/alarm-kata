@@ -14,6 +14,11 @@ public class Alarm {
 	  emailService = new EmailService();
   }
   
+  public Alarm(ILocalTimeProvider localTimeProvider, EmailService emailService) {
+	  this.localTimeProvider = localTimeProvider;
+	  this.emailService = emailService;
+  }
+  
   public int checkForAlarm() {
 
     final LocalTime currentTime = localTimeProvider.getCurrentTime();
